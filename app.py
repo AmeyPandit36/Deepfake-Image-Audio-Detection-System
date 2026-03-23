@@ -5,12 +5,6 @@ import numpy as np
 import pickle
 from flask import Flask, request, jsonify, render_template
 from PIL import Image
-import tensorflow as tf
-from tensorflow.keras.models import load_model, Model
-import torch
-import torch.nn as nn
-import torchvision.models as custom_models
-from torchvision import transforms
 
 app = Flask(__name__)
 
@@ -123,6 +117,7 @@ def get_model(model_id):
     info = ALL_MODELS[model_id]
     path = os.path.join(MODELS_DIR, info['file'])
     if info['type'] == 'keras':
+        from tensorflow.keras.models import load_model
         model = load_model(path, compile=False)
         _models_cache[model_id] = model
     elif info['type'] == 'sklearn':
@@ -130,6 +125,9 @@ def get_model(model_id):
         model = joblib.load(path)
         _models_cache[model_id] = model
     elif info['type'] == 'pytorch':
+        import torch
+        import torch.nn as nn
+        import torchvision.models as custom_models
         device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
         model = custom_models.resnet50(weights=None)
         
@@ -157,6 +155,7 @@ def preprocess_image(image_bytes):
     return np.expand_dims(arr, axis=0)
 
 def preprocess_image_pt(image_bytes):
+    from torchvision import transforms
     img = Image.open(io.BytesIO(image_bytes)).convert('RGB')
     transform = transforms.Compose([
         transforms.Resize((224, 224)),
@@ -237,6 +236,7 @@ def api_predict_image():
         try:
             model = get_model(model_id)
             if info['type'] == 'pytorch':
+                import torch
                 img_pt = preprocess_image_pt(image_bytes)
                 device = next(model.parameters()).device
                 img_pt = img_pt.to(device)
