@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="DeepGuard — AI-powered deepfake image detection using state-of-the-art CNN models." />
+  <title>{% block title %}DeepGuard — Deepfake Detection{% endblock %}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+  {% block head %}{% endblock %}
+</head>
+<body>
+
+  <!-- ── Navbar ─────────────────────────────────────── -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="/" class="nav-logo">
+        <span class="logo-icon">🛡️</span>
+        <span class="logo-text">Deep<span class="accent">Guard</span></span>
+      </a>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="/" class="nav-link {% if request.path == '/' %}active{% endif %}">Home</a></li>
+        <li><a href="/models" class="nav-link {% if request.path == '/models' %}active{% endif %}">Models</a></li>
+        <li><a href="/predict" class="nav-link {% if request.path == '/predict' %}active{% endif %}">Predict</a></li>
+      </ul>
+
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ── Page Content ───────────────────────────────── -->
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- ── Footer ─────────────────────────────────────── -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <span class="logo-icon">🛡️</span>
+        <span class="logo-text">Deep<span class="accent">Guard</span></span>
+        <p>AI-powered deepfake detection for a more trustworthy internet.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/models">Models</a></li>
+          <li><a href="/predict">Predict</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Models</h4>
+        <ul>
+          <li><a href="/models">Custom CNN</a></li>
+          <li><a href="/models">Custom CNN (Augmented)</a></li>
+          <li><a href="/models">ResNet-50 (PyTorch)</a></li>
+          <li><a href="/models">Random Forest (Audio)</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2024 DeepGuard. Built for research and education.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+      document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20);
+    });
+    // Mobile menu toggle
+    document.getElementById('hamburger').addEventListener('click', () => {
+      document.getElementById('navLinks').classList.toggle('open');
+      document.getElementById('hamburger').classList.toggle('active');
+    });
+  </script>
+  {% block scripts %}{% endblock %}
+</body>
+</html>

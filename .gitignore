@@ -1,6 +1,29 @@
-.DS_Store
-combined-real-and-fake-faces/*
-.ipynb_checkpoints
+# Environments
+.venv/
+.venv39/
+env/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+
+# Datasets / Large CSVs
+*.csv
+combined-real-and-fake-faces/
+custom-arch/
+densenet-arch/
+vggface-arch/
+
+# Jupyter Checkpoints
+.ipynb_checkpoints/
 */.ipynb_checkpoints/*
+
+# Mac specific
+.DS_Store
+
+# Temporary outputs
+temp_extract/
 vector_reps/
-models/
+
+# NOTE: models/ is NOT ignored because Render needs them.
+# The biggest model is ~98MB which is under GitHub's 100MB strict limit.

@@ -1,0 +1,195 @@
+{% extends "base.html" %}
+
+{% block title %}Analyze – DeepGuard{% endblock %}
+
+{% block content %}
+<section class="page-header">
+  <div class="page-header-inner">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="/">Home</a> <span>/</span> <span>Predict</span>
+    </nav>
+    <h1>Analyze Media</h1>
+    <p>Upload an image or audio file — our AI ensemble will detect if it's real or deepfake.</p>
+  </div>
+</section>
+
+<section class="predict-section">
+  <div class="container">
+
+    <!-- Modality Tabs -->
+    <div class="modality-tabs" id="modality-tabs">
+      <button class="tab-btn active" data-tab="image" id="tab-image">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        Image Detection
+      </button>
+      <button class="tab-btn" data-tab="audio" id="tab-audio">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
+        Audio Detection
+      </button>
+    </div>
+
+    <!-- ══════════ IMAGE TAB ══════════ -->
+    <div id="panel-image" class="tab-panel active">
+      <div class="predict-layout">
+
+        <!-- Upload Panel -->
+        <div class="upload-panel glass-card">
+          <h2>Upload Image</h2>
+          <p class="upload-hint">Supported: JPG, PNG, WEBP, BMP · Max 16 MB</p>
+
+          <div class="dropzone" id="img-dropzone">
+            <div class="dropzone-icon">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            </div>
+            <p class="dropzone-label">Drag &amp; drop your image here</p>
+            <p class="dropzone-sub">or click to browse files</p>
+            <input type="file" id="img-file-input" accept=".jpg,.jpeg,.png,.webp,.bmp" class="hidden-input">
+          </div>
+
+          <div id="img-preview-container" class="preview-container hidden">
+            <img id="img-preview" alt="Preview" class="preview-img">
+            <button class="btn-remove-img" id="img-remove-btn" title="Remove image">✕</button>
+          </div>
+
+          <button class="btn btn-primary btn-full mt-1" id="img-analyze-btn" disabled>
+            <span>Analyze Image</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          </button>
+        </div>
+
+        <!-- Results Panel -->
+        <div class="results-panel glass-card" id="img-results-panel">
+          <div id="img-idle-state" class="idle-state">
+            <div class="idle-icon">
+              <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            </div>
+            <h3>No Analysis Yet</h3>
+            <p>Upload an image and click "Analyze Image" to see predictions from our CNN models.</p>
+          </div>
+
+          <div id="img-loading-state" class="loading-state hidden">
+            <div class="spinner"></div>
+            <p class="loading-label">Analyzing your image…</p>
+            <div class="loading-steps">
+              <div class="loading-step active" id="img-step1">⬜ Preprocessing image</div>
+              <div class="loading-step" id="img-step2">⬜ Custom CNN inference</div>
+              <div class="loading-step" id="img-step3">⬜ Custom CNN (Augmented) inference</div>
+              <div class="loading-step" id="img-step4">⬜ ResNet-50 (PyTorch) inference</div>
+              <div class="loading-step" id="img-step5">⬜ Computing ensemble</div>
+            </div>
+          </div>
+
+          <div id="img-result-state" class="result-state hidden">
+            <!-- Ensemble Verdict -->
+            <div class="verdict-card" id="img-verdict-card">
+              <div class="verdict-icon" id="img-verdict-icon"></div>
+              <div class="verdict-label" id="img-verdict-label"></div>
+              <div class="verdict-conf" id="img-verdict-conf"></div>
+              <div class="verdict-votes" id="img-verdict-votes"></div>
+            </div>
+
+            <!-- Per-model Results -->
+            <h3 class="results-subtitle">Per-Model Results</h3>
+            <div class="model-results" id="img-model-results"></div>
+
+            <button class="btn-secondary mt-1" id="img-reset-btn">← Analyze Another Image</button>
+          </div>
+
+          <div id="img-error-state" class="error-state hidden">
+            <div class="error-icon">⚠️</div>
+            <h3>Analysis Failed</h3>
+            <p id="img-error-msg"></p>
+            <button class="btn-secondary mt-1" id="img-error-reset-btn">Try Again</button>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- /panel-image -->
+
+    <!-- ══════════ AUDIO TAB ══════════ -->
+    <div id="panel-audio" class="tab-panel hidden">
+      <div class="predict-layout">
+
+        <!-- Upload Panel -->
+        <div class="upload-panel glass-card">
+          <h2>Upload Audio</h2>
+          <p class="upload-hint">Supported: WAV, MP3, OGG, FLAC, M4A · Max 32 MB</p>
+
+          <div class="dropzone" id="aud-dropzone">
+            <div class="dropzone-icon">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
+            </div>
+            <p class="dropzone-label">Drag &amp; drop your audio here</p>
+            <p class="dropzone-sub">or click to browse files</p>
+            <input type="file" id="aud-file-input" accept=".wav,.mp3,.ogg,.flac,.m4a" class="hidden-input">
+          </div>
+
+          <div id="aud-preview-container" class="preview-container hidden">
+            <div class="audio-preview-inner">
+              <div class="audio-icon">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/></svg>
+              </div>
+              <div class="audio-file-info">
+                <span class="audio-filename" id="aud-filename"></span>
+                <span class="audio-filesize" id="aud-filesize"></span>
+              </div>
+            </div>
+            <audio controls id="aud-player" class="audio-player"></audio>
+            <button class="btn-remove-img" id="aud-remove-btn" title="Remove audio">✕</button>
+          </div>
+
+          <button class="btn btn-primary btn-full mt-1" id="aud-analyze-btn" disabled>
+            <span>Analyze Audio</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3z"/></svg>
+          </button>
+        </div>
+
+        <!-- Results Panel -->
+        <div class="results-panel glass-card" id="aud-results-panel">
+          <div id="aud-idle-state" class="idle-state">
+            <div class="idle-icon">
+              <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
+            </div>
+            <h3>No Analysis Yet</h3>
+            <p>Upload an audio file and click "Analyze Audio" to detect deepfake speech or voice cloning.</p>
+          </div>
+
+          <div id="aud-loading-state" class="loading-state hidden">
+            <div class="spinner"></div>
+            <p class="loading-label">Analyzing your audio…</p>
+            <div class="loading-steps">
+              <div class="loading-step active" id="aud-step1">⬜ Extracting MFCC features</div>
+              <div class="loading-step" id="aud-step2">⬜ Random Forest inference</div>
+              <div class="loading-step" id="aud-step3">⬜ Computing verdict</div>
+            </div>
+          </div>
+
+          <div id="aud-result-state" class="result-state hidden">
+            <div class="verdict-card" id="aud-verdict-card">
+              <div class="verdict-icon" id="aud-verdict-icon"></div>
+              <div class="verdict-label" id="aud-verdict-label"></div>
+              <div class="verdict-conf" id="aud-verdict-conf"></div>
+            </div>
+
+            <h3 class="results-subtitle">Per-Model Results</h3>
+            <div class="model-results" id="aud-model-results"></div>
+
+            <button class="btn-secondary mt-1" id="aud-reset-btn">← Analyze Another Audio</button>
+          </div>
+
+          <div id="aud-error-state" class="error-state hidden">
+            <div class="error-icon">⚠️</div>
+            <h3>Analysis Failed</h3>
+            <p id="aud-error-msg"></p>
+            <button class="btn-secondary mt-1" id="aud-error-reset-btn">Try Again</button>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- /panel-audio -->
+
+  </div>
+</section>
+
+<script src="/static/js/predict.js"></script>
+{% endblock %}
