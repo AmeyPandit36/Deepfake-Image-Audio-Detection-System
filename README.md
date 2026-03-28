@@ -4,6 +4,9 @@
 
 With the advent of Generative Adversarial Network (GAN) and other deep learning based DeepFake techniques, the immediate challenge we face as a community is how to assess the validity of online material be it machine learning derived images or videos. We are faced with an unprecedented potential for an extreme violation of basic human rights along with a fundamental unavoidable change in how humans interact socially. We have already seen evidence of maligning and manipulation of news headlines, medical (dis)information along with abuse of individual privacy. The goal of this proposed project is to use an online image database to effectively detect DeepFake images. This paper focuses on use of convolutional neural networks for classification of true versus fake images obtained from a large online database. We aimed to compare three different convolutional neural networks:
 
+The project is deployed on : https://amey36/deepfake-detection.hf.space
+
+
 1. VGGFace16
 2. DenseNet-121
 3. 3 Custom CNN Architectures. 
