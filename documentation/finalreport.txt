@@ -1,0 +1,306 @@
+
+Deepfake Image Audio Detection System
+Submitted in partial fulfilment of the requirements
+
+of the term work of the 
+
+Mini/Minor/Major Project of Semester VI
+in
+TE INFORMATION TECHNOLGY 
+(A.Y. 2025-2026)
+
+by
+
+
+Under the Guidance of 
+Prof. Rashmi More
+Department of Information Technology, FAMT
+Industry Mentor’s Name, Affiliation and Designation
+
+
+
+Department of Information Technology
+Finolex Academy of Management and Technology
+Ratnagiri, Maharashtra-415639
+
+October 2025
+Primary SDG – 7. Affordable and Clean Energy: Ensure access to affordable, reliable, sustainable, and modern energy for all.
+Secondary SDG – 9. Industry, Innovation, and Infrastructure: Build resilient infrastructure, promote inclusive and sustainable industrialization, and foster innovation.
+(Students are required to insert the SDGs as per the final discussion with their Guide and Industry Mentor)
+
+
+CERTIFICATE
+This is to certify that the Mini Project Entitled Deepfake Image Audio Detection System is bonafied work of 
+
+Kadam Paras Ajit T-23-
+Kadam Soham Shridhar  T-23-
+Nivalkar Sahil Ramdas T-23-
+Pandit Amey Ravindra T-23-
+
+Submitted to the University of Mumbai in partial fulfilment of the requirement for the submission of the termwork of the Mini Project of TE Information Technology.
+
+
+
+Date:
+
+Place: Finolex Academy of Management and Technology, Ratnagiri
+
+
+Project Report Approval for Bachelor of Engineering
+
+
+This project report entitled Project Title by 
+Student Name  Registration No
+Student Name  Registration No
+Student Name  Registration No
+Student Name  Registration No
+
+is approved for the partial fulfillment of the term work requirement for  SE/TE /BE  INFORMATION TECHNOLGY.
+
+
+
+
+
+
+Date:
+
+Place:
+
+
+Declaration
+
+I declare that this written submission represents my ideas in my own words and where others' ideas or words have been included, I have adequately cited and referenced the original sources.   I also declare that I have adhered to all principles of academic honesty and integrity and    have    not    misrepresented or   fabricated   or   falsified   any   idea/data/fact/source   in   my submission.  I understand that any violation of the above will be cause for disciplinary action by the Institute and can also evoke penal action from the sources which have thus not been properly cited or from whom proper permission has not been taken when needed.
+
+
+
+
+----------------------------------------- (Signature)
+
+
+
+1.---------------------------------------------
+
+2.---------------------------------------------
+
+3.---------------------------------------------
+
+4.---------------------------------------------
+
+
+ (Name of student and Roll No.)
+
+Date:
+
+
+
+
+
+
+
+
+Index
+
+
+
+
+
+
+
+
+
+
+1. Abstract:
+A brief overview (150-200 words) of the project, summarizing the problem statement, the proposed solution, and the anticipated outcome.
+2. Introduction:
+Background: Provide an introduction to the project, why it is important, and its relevance to the current trends or needs in computer engineering.
+Problem Definition: State the problem you are aiming to solve or the system you are aiming to improve. Mention any existing solutions or challenges.
+3. Objectives:
+Define the primary and secondary objectives of the project.
+Objective 1
+Objective 2
+Objective 3 (if applicable)
+4. Literature Survey:
+Briefly discuss any previous research or existing systems related to your project. Mention a few papers, projects, or technologies you have studied that form the foundation of your project.
+Base Papers-List at least Four Review Papers on which your Project Idea is based on
+Make a Research Gap Analysis and Project Objective formulation as follows
+
+Repeat the same for all Project/Research Objectives
+
+
+
+
+
+
+
+
+
+
+
+
+
+5. Mapping of Project Outcomes (POs) to Program Outcomes (POs)/Program Specific Outcomes (PSOs
+Chapter Guidelines
+
+1. Introduction to the Chapter
+Purpose: Start by explaining why this mapping is necessary. This shows you understand the academic purpose behind the project.
+Suggested Content:
+Briefly state that the Major Project is a capstone experience designed to integrate knowledge and skills acquired throughout the undergraduate engineering program.
+Explain that this section formally maps the outcomes of this specific project to the defined Program Outcomes (POs) and Program Specific Outcomes (PSOs) of your engineering discipline (e.g., as defined by your university or accrediting bodies like NBA in India, which uses 12 POs for UG Engineering).
+Mention that the mapping demonstrates the project's contribution to achieving the competencies required for an engineering graduate.
+
+2. Definition of Program Outcomes (POs) and Program Specific Outcomes (PSOs)
+Purpose: Provide a clear reference for the reader (evaluator). Do not assume they have the list memorized.
+Suggested Content:
+List the 12 (or your university's specific) Program Outcomes (POs). These are the graduate attributes. For example:
+PO1: Engineering knowledge: Apply the knowledge of mathematics, science, engineering fundamentals, and an engineering specialization to the solution of complex engineering problems.
+PO2: Problem analysis: Identify, formulate, review research literature, and analyze complex engineering problems reaching substantiated conclusions using first principles of mathematics, natural sciences, and engineering sciences.
+PO3: Design/development of solutions: Design solutions for complex engineering problems and design system components or processes that meet the specified needs with appropriate consideration for public health and safety, and cultural, societal, and environmental considerations.
+... (Continue for all relevant POs, typically up to PO12).
+List the Program Specific Outcomes (PSOs). These are specific to your department (e.g., Computer Science, Mechanical Engineering). They describe skills specific to that field.
+Example for Computer Science: PSO1: An ability to design, develop, and implement software systems of varying complexity.
+Example for Mechanical Engineering: PSO1: An ability to apply thermal and mechanical principles to the design and analysis of automotive systems.
+3. Statement of Project Outcomes (Pos)
+Purpose: Define the specific, measurable outcomes of your project. These should be direct results of completing the project. They are different from your project's objectives.
+How to Write Project Outcomes:
+Start with an action verb (e.g., Design, Develop, Analyze, Implement, Evaluate, Optimize).
+They should be observable and measurable.
+Typically, you will have 3-5 Project Outcomes.
+Examples for Different Projects:
+For a Software Project (e.g., E-commerce App):
+PO₁ (Proj): Design and develop a secure, scalable full-stack web application with user authentication and a product catalog.
+PO₂ (Proj): Implement a functional payment gateway integration and an admin dashboard for inventory management.
+PO₃ (Proj): Analyze the system's performance under load and document the entire software development lifecycle.
+For a Hardware/Electronics Project (e.g., Smart Irrigation System):
+PO₁ (Proj): Design and assemble a circuit with soil moisture sensors, a microcontroller, and a water pump driver.
+PO₂ (Proj): Develop firmware to read sensor data and automatically control the irrigation pump based on threshold values.
+PO₃ (Proj): Evaluate the system's effectiveness in conserving water compared to traditional timer-based systems.
+
+4. Mapping Methodology
+Purpose: Explain how you determined the correlation. This adds credibility.
+Suggested Content:
+State that the correlation is determined on a three-point scale, a common method in outcome-based education:
+3 = High Correlation: The project outcome directly and significantly addresses the program outcome.
+2 = Medium Correlation: The project outcome partially or indirectly addresses the program outcome.
+1 = Low Correlation: The project outcome minimally addresses the program outcome.
+'-' or Blank = No Correlation.
+
+5. The Mapping Table
+Purpose: This is the visual centrepiece of the chapter. It should be clear and easy to understand.
+How to Create the Table:
+Rows: Your Project Outcomes (PO₁(Proj), PO₂(Proj), etc.).
+Columns: The Program Outcomes (PO1, PO2, ... PO12) and Program Specific Outcomes (PSO1, PSO2, etc.).
+Cells: Contain the correlation value (3, 2, 1).
+Example Table Structure: 
+
+6. Justification for Key Mappings
+Purpose: This is the most important part. It proves you didn't just fill in numbers randomly. Justify 2-3 of the strongest correlations.
+Suggested Content:
+Write a short paragraph or bullet points explaining the reasoning behind high-correlation mappings.
+Example Justification:
+"PO₁(Proj) to PO3 (Design/development of solutions): High Correlation (3) - The core of this project involved designing the system architecture, database schema, and user interfaces, directly applying PO3."
+
+Explain how the Project Outcomes are addressing the Program Outcomes.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+6. Methodology:
+Outline the process and technologies you plan to use for the project. Include the following:
+Tools & Technologies: Programming languages, frameworks, hardware, and software you will use.
+System Architecture: High-level description of the system architecture or workflow.
+System Architecture Diagram: A block or layered diagram showing main components (e.g., user interface, database, application logic, external systems, sensors, cloud, etc.) and their interactions.
+Brief Description: 2-3 lines summarizing how the system operates, the roles of major modules, and the flow of data between components.
+Key Modules/Blocks: Label and briefly describe each major module (e.g., Data Acquisition, Processing, Storage, Analytics, Communication, Security).
+Data Flow: Indicate the direction and nature of data (input, output, feedback, etc.) through arrows or lines in the diagram.
+Technology Stack (optional): Mention core technologies (e.g., languages, platforms, communication protocols) if relevant.
+Assumptions/Constraints (optional): List any important constraints, like network dependency, hardware limitations, scalability targets.
+Datasets used- Discuss in detail the datasets used if any
+Implementation Plan: The approach you will follow for development, testing, and deployment.
+
+7. Expected Outcome/ Results in current semester
+Clearly define the outcome of the project. What will the final system or product achieve, and how will it address the problem or objective mentioned earlier?
+Discuss the results achieved in the current semester.
+8. Project Timeline:
+Note: For Semester 7th and 8th separate
+A brief timeline detailing when each phase of the project will be completed.
+Week 1-2: [Phase 1 - Initial research & planning]
+Week 3-4: [Phase 2 - Design]
+Week 5-8: [Phase 3 - Development]
+Week 9-10: [Phase 4 - Testing & final report]
+9. Hardware/Software Requirements:
+Hardware Requirements:
+List of necessary hardware components.
+Software Requirements:
+List of software, IDEs, or tools required for development and testing.
+9. Alignment with Sustainable Development Goals (SDGs)
+1. Introduction to the Chapter
+Purpose: To establish the context and importance of the SDGs and explain why mapping your project to them is valuable.
+Suggested Content:
+Begin by stating that engineering solutions have a significant role to play in addressing global challenges.
+Introduce the UN's 17 Sustainable Development Goals (SDGs) as a universal call to action to end poverty, protect the planet, and ensure prosperity for all by 2030.
+Explain that this chapter demonstrates how your final year project, while an academic exercise, is designed to contribute positively to one or more of these global goals, highlighting its potential for real-world impact.
+2. Overview of Relevant Sustainable Development Goals
+Purpose: To show you understand the specific SDGs your project aligns with. Don't list all 17; only focus on the most relevant ones (typically 1-3 goals).
+Suggested Content:
+Briefly describe the SDGs that are most relevant to your project. For each one, include:
+The SDG number and title (e.g., SDG 3: Good Health and Well-being).
+The official definition/targets in your own words.
+A sentence on why this goal is relevant to the engineering field.
+Example:
+"SDG 9: Industry, Innovation, and Infrastructure. This goal aims to build resilient infrastructure, promote inclusive and sustainable industrialization, and foster innovation. It is central to engineering, as it directly involves developing efficient systems, new technologies, and robust physical and digital infrastructure."
+3. Primary SDG Alignment
+Purpose: To clearly identify the single most relevant SDG your project supports and provide a detailed justification. This is your strongest link.
+Suggested Content:
+Clearly state the primary SDG your project addresses.
+Provide a detailed justification with direct references to your project's features and objectives.
+Template:
+"This project primarily contributes to SDG [Number]: [SDG Name].
+The project's focus on [Mention a key aspect of your project, e.g., developing an affordable water purification system, creating a renewable energy monitoring tool, building an accessible education platform] directly supports the targets of this goal, specifically [mention a specific target if possible, e.g., ensuring access to clean water, promoting sustainable infrastructure]. By [Explain how your project does this], it aligns with the core objective of [Reiterate the SDG's objective]."
+Concrete Example (for a Water Quality Monitoring System):
+"This project primarily contributes to SDG 6: Clean Water and Sanitation. The development of a low-cost, real-time water quality monitoring system directly supports Target 6.3: improving water quality by reducing pollution. The system enables communities to detect contaminants early, preventing waterborne diseases and promoting sustainable water management."
+4. Secondary SDG Alignment
+Purpose: To show the broader, often indirect, impact of your project. This demonstrates holistic thinking.
+Suggested Content:
+Identify one or two secondary SDGs that your project indirectly supports.
+The connection can be through the technology used, the methodology, or a side-effect of the primary goal.
+Template:
+"Additionally, this project secondarily supports SDG [Number]: [SDG Name]. While not the primary focus, the project's use of [Mention a technology/method, e.g., solar power, open-source software, user-centered design] promotes [Mention the secondary SDG's objective, e.g., affordable and clean energy, reduced inequalities]. Furthermore, by [Explain the indirect effect, e.g., providing data for better health decisions, creating a tool that can be used in remote areas], it contributes to [Reiterate the secondary SDG]."
+Concrete Example (Continuing from the water system):
+"Additionally, this project secondarily supports SDG 3: Good Health and Well-being. By preventing the consumption of contaminated water, the system directly reduces the incidence of waterborne diseases, thereby improving public health. It also indirectly supports SDG 9: Industry, Innovation, and Infrastructure by demonstrating an innovative, locally deployable sensing technology."
+5. Mapping Table (SDG Contribution Summary)
+Purpose: To provide a clear, at-a-glance summary of the alignment. This is very effective for evaluators.
+How to Create the Table:
+Rows: List the SDGs your project addresses.
+Columns: SDG Number/Icon, SDG Name, Nature of Contribution (Primary/Secondary), and Key Project Feature Enabling the Contribution.
+Example Table Structure:
+Pro Tip: Include small icons of the SDGs in the first column for a visually appealing presentation.
+6. Conclusion on Broader Impact
+Purpose: To summarize the significance of this alignment and reflect on the role of an engineer in society.
+Suggested Content:
+Briefly summarize how your project aligns with the selected SDGs.
+Reflect on the potential long-term impact if the project were to be implemented at a larger scale.
+Conclude by stating that this exercise underscores the responsibility of engineers to develop sustainable and socially conscious technological solutions.
+Example:
+"In conclusion, the [Your Project Name] demonstrates the potential for engineering innovation to address critical global challenges outlined in the UN SDGs. By primarily contributing to SDG 6 and secondarily to SDGs 3 and 9, the project highlights a pathway toward more sustainable water management and public health protection. This alignment reinforces the imperative for engineers to consciously design solutions that are not only technically sound but also socially responsible and environmentally sustainable."
+9. Conclusion:
+Briefly summarize the goal of the project and its anticipated impact in the field of computer engineering.
+10. References
+Use IEEE referencing format (at least 20 Scopus, SCI, ESCI Indexed Journal and Conferences)
+Example: Revathi S, T., Ramaraj, N. and Chithra, S., "Tracy–Singh Product and Genetic Whale Optimization Algorithm for Retrievable Data Perturbation for Privacy Preserved Data Publishing in Cloud Computing," The Computer Journal, vol.63, no.2, pp.239-253, 2020
